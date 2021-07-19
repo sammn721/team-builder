@@ -71,9 +71,17 @@ const writeToFile = (fileName, data) => {
 const managerInit = () => inquirer
     .prompt(managerQuestions)
     .then((managerAnswers) => {
-        const htmlText = generatehtml(managerAnswers);
-        writeToFile("index.html", htmlText);
-        askNext();
+        return askNext();
+    })
+    .then(() => {
+
+    })
+    .catch((error) => {
+        if (error.isTtyError) {
+            //prompt couldn't be rendered in the current environment
+        } else {
+            //something else went wrong
+        }
     });
 
 const askNext = () => {
@@ -81,11 +89,11 @@ const askNext = () => {
     .prompt(nextQuestion)
     .then((nextAnswer) => {
         if(nextAnswer === 'Engineer') {
-            askEngineerQuestions();
+            return askEngineerQuestions();
         } if(nextAnswer === 'Intern') {
-            askInternQuestions();
+            return askInternQuestions();
         } else {
-            askFinish();
+            return askFinish();
         }
     })
 };
@@ -93,18 +101,14 @@ const askEngineerQuestions = () => {
     return inquirer
     .prompt(engineerQuestions)
     .then((engineerAnswers) => {
-        const htmlText = generatehtml(engineerAnswers);
-        writeToFile("index.html", htmlText);
-        askNext();
+        return askNext();
     })
 };
 const askInternQuestions = () => {
     return inquirer
     .prompt(internQuestions)
     .then((internAnswers) => {
-        const htmlText = generatehtml(internAnswers);
-        writeToFile("index.html", htmlText);
-        askNext();
+        return askNext();
     })
 };
 const askFinish = () => {
