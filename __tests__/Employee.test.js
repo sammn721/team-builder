@@ -12,7 +12,7 @@ describe("Employee", () => {
     })
     describe("getId", () => {
         it("should get id from Employee object", () => {
-            const employee = new Employee({id:7});
+            const employee = new Employee({id:7, name:"Sam", email:"sammn721@gmail.com"});
             
             expect(employee.id).toEqual(7);
         })
