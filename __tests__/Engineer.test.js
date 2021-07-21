@@ -6,11 +6,11 @@ describe("Engineer", () => {
     describe("getGithub", () => {
         it("should do", () => {
             expect();
-        })
-    })
+        });
+    });
     describe("getRole", () => {
         it("should do", () => {
             expect();
-        })
-    })
+        });
+    });
 });

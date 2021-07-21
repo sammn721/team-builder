@@ -2,7 +2,7 @@ const generatehtml = require("./src/generatehtml");
 const fs = require('fs');
 const inquirer = require ('inquirer');
 
-const employees = [];
+let employees = [];
 
 const employeeQuestions = [
     {
@@ -25,7 +25,7 @@ const employeeQuestions = [
 const managerQuestions = [
     {
         type: "number",
-        message: "What is your office number?",
+        message: "What is the employee's office number?",
         name: "officeNumber"
     }
 ]
@@ -33,7 +33,7 @@ const managerQuestions = [
 const engineerQuestions = [
     {
         type: "input",
-        message: "What is the engineer's GitHub username?",
+        message: "What is the employee's GitHub username?",
         name: "username"
     }
 ]
@@ -41,7 +41,7 @@ const engineerQuestions = [
 const internQuestions = [
     {
         type: "input",
-        message: "What school does the intern attend?",
+        message: "What school does the employee attend?",
         name: "school"
     }
 ]
@@ -68,20 +68,15 @@ const writeToFile = (fileName, data) => {
 
 
 
-const managerInit = () => inquirer
+const managerInit = () => 
+console.log("Hello, manager! Let's get some information first.")
+inquirer
     .prompt(managerQuestions)
     .then((managerAnswers) => {
         return askNext();
     })
     .then(() => {
 
-    })
-    .catch((error) => {
-        if (error.isTtyError) {
-            //prompt couldn't be rendered in the current environment
-        } else {
-            //something else went wrong
-        }
     });
 
 const askNext = () => {
@@ -116,7 +111,7 @@ const askFinish = () => {
     .prompt(confirmFinish)
     .then((finish) => {
 
-    })
+    });
 };
 
 managerInit();
